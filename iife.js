@@ -1,4 +1,4 @@
-// Immediately Invoked Function Expression
+// Immediately Invoked Function Expressions
 
 // regular function
 function increment(i) {
@@ -50,16 +50,25 @@ increment(i);
 
 // example of creating our own js library
 
+// this is immediately invoked, whatever it returns, it copies into the counter variable
+// inside this function, there is a private variable, i, = to 0
+// and the function returns an object with 3 methods. 
+// this is also a closure
+// which means if you tried to use i outside, it wouldnt work. 
+
 var counter = (function(){
     var i = 0;
 
     return {
+        // returns i
         get: function() {
             return i;
         },
+        // set i = the variable passed
         set: function(val) {
             return i = val
         },
+        // increment i by 1 
         increment: function() {
             i++;
         }
@@ -67,3 +76,8 @@ var counter = (function(){
 
 })();
 
+// obj methods available by counter.
+console.log(counter.get()); // i = 0
+counter.set(5); // i = 5
+counter.increment(); // i++
+console.log(counter.get()); // i = 6
